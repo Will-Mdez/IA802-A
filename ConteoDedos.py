@@ -1,5 +1,5 @@
 import cv2
-import seguimientoManos as sm
+import SeguimientoManos as sm
 
 detector = sm.detectorManos(Confdeteccion=0.75)
 
