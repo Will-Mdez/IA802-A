@@ -178,7 +178,7 @@ def cerrar():
     pantalla2.geometry("1280x720")
     imagen2=PhotoImage(file="Fin.png")
 
-    plantilla2.Canvas(pantalla2,width=1280,height=720)
+    plantilla2=Canvas(pantalla2,width=1280,height=720)
 
     fondo=Label(pantalla2,image=imagen2)
     fondo.place(x=0,y=0,relwidth=1,relheight=1)
