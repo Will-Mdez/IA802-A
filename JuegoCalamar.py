@@ -1,8 +1,9 @@
 import cv2
 from tkinter import *
-import sounddevice as sd
+#import sounddevice as sd
 import soundfile as sf
 import threading as th
+import playsound as ps
 import time
 
 def jugar():
@@ -33,9 +34,10 @@ def jugar():
         global hilo,inicio
         inicio=time.time()
         #Leer Audio
-        data,fs=sf.read(archivo)
+        #data,fs=sf.read(archivo)
         #Reproducior Audio
-        sd.play(data,fs)
+        #sd.play(data,fs)
+        ps(archivo)
 
     def check2(hilo):
         fin= time.time()
@@ -195,8 +197,8 @@ def pantalla_principal():
     global pantalla, entrada
     pantalla = Tk()
     pantalla.title("SQUID GAME")
-    pantalla.geometry("1280x720")
-    imagen = PhotoImage(file="Fondo.jpg")
+    pantalla.geometry("1000x1000")
+    imagen = PhotoImage(file="Fondo.png")
 
     #Creacion de pantalla
 
@@ -209,15 +211,15 @@ def pantalla_principal():
     img2=PhotoImage(file="Cerrar.png")
 
     boton1=Button(pantalla,text="JUGAR" , height="40",width="300",command=jugar,image=img1)
-    buton1pla = plantilla1.create_window(310,580,anchor="nw",window=boton1)
+    buton1pla = plantilla1.create_window(110,580,anchor="nw",window=boton1)
 
     boton2=Button(pantalla,text="CERRAR" , height="40",width="300",command=cerrar,image=img2)
-    buton2pla = plantilla1.create_window(705,580,anchor="nw",window=boton2)
+    buton2pla = plantilla1.create_window(505,580,anchor="nw",window=boton2)
 
     #Entrada de Numero de Jugadores
     jugadores=StringVar()
     entrada=Entry(pantalla,textvariable=jugadores)
-    entradapla=plantilla1.create_window(595,650,anchor="nw",window=entrada)
+    entradapla=plantilla1.create_window(395,650,anchor="nw",window=entrada)
 
     pantalla.mainloop()
 
