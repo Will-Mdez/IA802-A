@@ -1,11 +1,5 @@
-from ast import arg
-from curses import window
-from tkinter import _EntryValidateCommand, PhotoImage, Toplevel
-from tokenize import String
-from turtle import width
 import cv2
-from regex import R
-from tkinder import *
+from tkinter import *
 import sounddevice as sd
 import soundfile as sf
 import threading as th
