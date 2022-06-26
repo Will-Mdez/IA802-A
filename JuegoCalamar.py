@@ -37,13 +37,13 @@ def jugar():
         #data,fs=sf.read(archivo)
         #Reproducior Audio
         #sd.play(data,fs)
-        
+        archivo="Roja.mp3"
         playsound(archivo)
 
     def check2(hilo):
         fin= time.time()
         tiempo=int(fin-inicio)
-        if tiempo > 6:
+        if tiempo > 5:
             Verde()
 
     def check(hilo):
@@ -118,10 +118,10 @@ def jugar():
                         if jugadores == 0:
                             cerrar()
 
-                cv2.imshow("LUZ VERDE LUZ ROJA",frame)
-                t= cv2.waitKey(27)
-                if t== 27:
-                    cerrar()
+            cv2.imshow("LUZ VERDE LUZ ROJA",frame)
+            t= cv2.waitKey(27)
+            if t== 27:
+                cerrar()
 
 
                 
