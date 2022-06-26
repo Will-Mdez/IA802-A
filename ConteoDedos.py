@@ -3,7 +3,7 @@ import SeguimientoManos as sm
 
 detector = sm.detectorManos(Confdeteccion=0.75)
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 
 
 

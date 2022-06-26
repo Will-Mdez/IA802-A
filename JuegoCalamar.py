@@ -3,7 +3,7 @@ from tkinter import *
 #import sounddevice as sd
 import soundfile as sf
 import threading as th
-import playsound as ps
+import playsound as playsound
 import time
 
 def jugar():
@@ -18,7 +18,7 @@ def jugar():
     rostro = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
     #Captura de Video
-    cap=cv2.VideoCapture(0)
+    cap=cv2.VideoCapture(1)
     cap.set(3,1280)
     cap.set(4,720)
 
@@ -37,7 +37,8 @@ def jugar():
         #data,fs=sf.read(archivo)
         #Reproducior Audio
         #sd.play(data,fs)
-        ps(archivo)
+        
+        playsound(archivo)
 
     def check2(hilo):
         fin= time.time()
@@ -57,7 +58,7 @@ def jugar():
 
         dis = 0
 
-        archivo='Roja.mp3'
+        archivo="Roja.mp3"
         hilo= th.Thread(target=audio,args=(archivo,))
         hilo.start()
 
@@ -125,7 +126,7 @@ def jugar():
 
                 
     def Verde():
-        archivo='Verde.mp3'
+        archivo="Verde.mp3"
         hilo=th.Thread(target=audio,args=(archivo,))
         hilo.start()
 
