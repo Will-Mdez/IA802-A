@@ -1,6 +1,6 @@
 import cv2
 from tkinter import *
-#import sounddevice as sd
+import sounddevice as sd
 import soundfile as sf
 import threading as th
 import playsound as playsound
@@ -15,10 +15,10 @@ def jugar():
     jugadores = int(jugadores)
 
     #Deteccion de rostro
-    rostro = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+    rostro = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
 
     #Captura de Video
-    cap=cv2.VideoCapture(1)
+    cap=cv2.VideoCapture(0)
     cap.set(3,1280)
     cap.set(4,720)
 
@@ -34,11 +34,10 @@ def jugar():
         global hilo,inicio
         inicio=time.time()
         #Leer Audio
-        #data,fs=sf.read(archivo)
+        data,fs=sf.read(archivo)
         #Reproducior Audio
-        #sd.play(data,fs)
-        archivo="Roja.mp3"
-        playsound(archivo)
+        sd.play(data,fs)
+        #playsound(archivo)
 
     def check2(hilo):
         fin= time.time()
@@ -58,7 +57,7 @@ def jugar():
 
         dis = 0
 
-        archivo="Roja.mp3"
+        archivo='Roja.wav'
         hilo= th.Thread(target=audio,args=(archivo,))
         hilo.start()
 
@@ -93,17 +92,18 @@ def jugar():
                 (x,y,an,al)= cv2.boundingRect(con)
 
                 #Dubujar rectangulo
-                #cv2.rectangle(frame,(x,y),(x+an,y+al),(0,0,255),2)
+                cv2.rectangle(frame,(x,y),(x+an,y+al),(0,0,255),2)
 
                 #Detecccion Rostro
                 copia=frame.copy()
-                gris = cv2.cvtColor(copia,cv2.COLOR_BGR2GRAY)
-                caras=rostro.detectMultiScale(gris,1.3,5)
-
+                gray = cv2.cvtColor(copia, cv2.COLOR_BGR2GRAY)
+                caras=rostro.detectMultiScale(gray, 1.3, 5)
                 #Detecto el rostro del jugador que perdio
                 for (x2,y2,an, al) in caras:
+
                     cv2.rectangle(frame,(x2,y2),(x2+an,y2+al),(0,0,255),2)
-                    cv2.putText(frame,f"Jugador {str(contador)} ELIMINADO",(x2 -70,y2-70),cv2.FONT_HERSHEY_PLAIN,2,(0,0,255),2)
+
+                    cv2.putText(frame,f"Jugador {str(contador)} ELIMINADO",(x2 -70,y2-5),cv2.FONT_HERSHEY_PLAIN,2,(0,0,255),2)
 
                     #muerte
                     muerte = len(caras)
@@ -126,7 +126,7 @@ def jugar():
 
                 
     def Verde():
-        archivo="Verde.mp3"
+        archivo='Verde.wav'
         hilo=th.Thread(target=audio,args=(archivo,))
         hilo.start()
 
@@ -160,7 +160,7 @@ def jugar():
                 (x,y,an,al)= cv2.boundingRect(con)
 
                 #Dubujar rectangulo
-                cv2.rectangle(frame,(x,y),(x+an,y+al),(0,0,255),2)
+                cv2.rectangle(frame,(x,y),(x+an,y+al),(0,255,0),2)
 
             #Mostramos los frames
             cv2.imshow("LUZ VERDE LUZ ROJA", frame)
